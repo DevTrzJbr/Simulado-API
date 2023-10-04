@@ -64,6 +64,9 @@ class PacienteServices {
 
   // Delete a Paciente by ID
   async deletePaciente(id: number) {
+    await this.prisma.consulta.deleteMany({
+      where: { pacienteId: id },
+    });
     await this.prisma.paciente.delete({
       where: { id },
       // private senha e user       

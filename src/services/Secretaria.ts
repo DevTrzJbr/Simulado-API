@@ -43,6 +43,9 @@ class SecretariaServices {
     }
 
     async deleteSecretaria(id: number) {
+        await this.prisma.consulta.deleteMany({
+            where: { secretariaId: id },
+          });
         const secretaria = await this.prisma.secretaria.delete({
           where: {
             id,
