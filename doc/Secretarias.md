@@ -1,3 +1,18 @@
+## ROTAS Secretarias
+
+POST http://localhost:3000/secretarias/create
+
+GET http://localhost:3000/secretarias/   (retorna todas as secretarias)
+
+GET http://localhost:3000/secretarias/:id
+
+DELETE http://localhost:3000/secretarias/:id
+
+
+### Exemplos:
+
+
+```
 curl -X POST http://localhost:3000/secretarias/create \
   -H "Content-Type: application/json" \
   -d '{
@@ -22,3 +37,5 @@ curl -X PUT http://localhost:3000/secretarias/1 \
   }'
   
 curl -X GET http://localhost:3000/secretarias/
+
+```
