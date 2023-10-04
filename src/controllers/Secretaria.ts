@@ -1,12 +1,10 @@
 import { Request, Response } from 'express';
 import SecretariaServices from '../services/Secretaria';
 
-class SecretariaController {
-    private secretariaServices: SecretariaServices;
+const secretariaServices = new SecretariaServices();
 
-    constructor() {
-        this.secretariaServices = new SecretariaServices();
-    }
+class SecretariaController {
+    constructor() {}
 
     async create(req: Request, res: Response) {
         const { nome, RG } = req.body;
@@ -15,16 +13,17 @@ class SecretariaController {
         }
 
         try {
-            const secretaria = await this.secretariaServices.createSecretaria(nome, RG);
+            const secretaria = await secretariaServices.createSecretaria(nome, RG);
             return res.status(200).json(secretaria);
         } catch (err) {
             res.status(501).json({ message: "Erro" })
+            console.log("Deu ruim\n\n", err)
         }
     }
 
     async read(req: Request, res: Response) {
         try {
-            const secretarias = await this.secretariaServices.readSecretaria();
+            const secretarias = await secretariaServices.readSecretaria();
             return res.status(200).json(secretarias);
         } catch(err){
             res.status(501).json({
@@ -43,7 +42,7 @@ class SecretariaController {
         }
 
         try{
-            const secretaria = await this.secretariaServices.updateSecretaria(Number(id), nome, RG);
+            const secretaria = await secretariaServices.updateSecretaria(Number(id), nome, RG);
             return res.status(200).json(secretaria);
         } catch (err){
             res.status(501).json({
@@ -61,7 +60,7 @@ class SecretariaController {
         }
 
         try {
-            const secretaria = await this.secretariaServices.deleteSecretaria(Number(id));
+            const secretaria = await secretariaServices.deleteSecretaria(Number(id));
             return res.json(secretaria);
         } catch(err){
             res.status(501).json({
