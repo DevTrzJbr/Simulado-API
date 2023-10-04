@@ -2,7 +2,7 @@
 
 POST http://localhost:3000/pacientes/create
 
-GET http://localhost:3000/pacientes/   (retorna todas as agendas)
+GET http://localhost:3000/pacientes/   (retorna todas os pacientes)
 
 GET http://localhost:3000/pacientes/:id
 
