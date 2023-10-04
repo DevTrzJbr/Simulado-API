@@ -9,13 +9,13 @@ class PacienteController {
 
     // Create a new Paciente
     async createPaciente(req: Request, res: Response) {
-        const paciente = req.body
-        if (!paciente) {
+        const data = req.body
+        if (!data) {
             res.status(500)
             res.json("Erro")
         }
         try {
-            const novoPaciente = await paciente.createPaciente(paciente.nome, paciente.senha, paciente.user);
+            const novoPaciente = await paciente.createPaciente(data);
 
             res.status(200)
             res.json(novoPaciente)
@@ -44,13 +44,28 @@ class PacienteController {
 
     }
 
+    // Read Paciente by Id
+    async readPacienteById(req: Request, res: Response) {  
+        try {
+          const getPaciente = await paciente.readPacienteById(Number(req.params.id));
+  
+          if (!getPaciente) {
+            return res.status(404).json({ message: 'Paciente não encontrado' });
+          }
+  
+          return res.status(200).json(getPaciente);
+        } catch (error) {
+          console.error(error);
+          return res.status(500).json({ message: 'Erro interno do servidor' });
+        }
+      }
+
     // Update a Paciente
     async updatePaciente(req: Request, res: Response) {
-        const id = req.body.id;
-        const paciente = req.body.paciente;
+        const data = req.body.data;
 
         try {
-            const pacienteAtualizado = await paciente.updatePaciente(id, paciente.nome, paciente.senha, paciente.user);
+            const pacienteAtualizado = await paciente.updatePaciente(Number(req.params.id), data);
 
             res.status(200);
             res.json(pacienteAtualizado);

@@ -1,5 +1,17 @@
 import { PrismaClient } from '@prisma/client';
 
+interface IcreatePaciente {
+  nome: string,
+  senha: string,
+  user: string,
+}
+
+interface IupdatePaciente {
+  nome?: string, 
+  senha?: string, 
+  user?: string,
+}
+
 class PacienteServices {
   private prisma: PrismaClient
   constructor() {
@@ -7,21 +19,21 @@ class PacienteServices {
   }
 
   // Create a new Paciente
-  async createPaciente(nome: string, senha: string, user: string) {
-    const paciente = await this.prisma.paciente.create({
-      data: {
-        nome,
-        senha,
-        user
-      }
-    });
+  async createPaciente(data: IcreatePaciente) {
+    const paciente = await this.prisma.paciente.create({ data });
 
     return paciente;
   }
 
   // Read all Pacientes
   async readPacientes() {
-    const pacientes = await this.prisma.paciente.findMany();
+    const pacientes = await this.prisma.paciente.findMany({
+      // private senha e user       
+      select: {
+        id: true,
+        nome: true,
+      },
+    });
 
     return pacientes;
   }
@@ -30,20 +42,21 @@ class PacienteServices {
   async readPacienteById(id: number) {
     const paciente = await this.prisma.paciente.findUnique({
       where: { id },
+      // private senha e user       
+      select: {
+        id: true,
+        nome: true,
+      },
     });
 
     return paciente;
   }
 
   // Update a Paciente
-  async updatePaciente(id: number, nome: string, senha: string, user: string) {
+  async updatePaciente(id: number, data: IupdatePaciente) {
     const paciente = await this.prisma.paciente.update({
       where: { id },
-      data: {
-        nome,
-        senha,
-        user,
-      },
+      data
     });
 
     return paciente;
@@ -53,10 +66,15 @@ class PacienteServices {
   async deletePaciente(id: number) {
     await this.prisma.paciente.delete({
       where: { id },
+      // private senha e user       
+      select: {
+        id: true,
+        nome: true,
+      },
     });
   }
 
-  
+
 
 }
 
