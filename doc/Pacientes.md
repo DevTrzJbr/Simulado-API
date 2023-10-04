@@ -1,3 +1,17 @@
+## ROTAS Pacientes
+
+POST http://localhost:3000/pacientes/create
+
+GET http://localhost:3000/pacientes/   (retorna todas as agendas)
+
+GET http://localhost:3000/pacientes/:id
+
+DELETE http://localhost:3000/pacientes/:id
+
+
+### Exemplos:
+
+```
 curl -X POST http://localhost:3000/pacientes/create \
   -H "Content-Type: application/json" \
   -d '{
@@ -27,5 +41,4 @@ curl -X PUT http://localhost:3000/pacientes/1 \
   }'
 
 'curl -X DELETE http://localhost:3000/pacientes/2'
-
-
+```
