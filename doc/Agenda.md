@@ -1,3 +1,18 @@
+## ROTAS Agenda
+
+POST http://localhost:3000/agendas/create
+
+GET http://localhost:3000/agendas/   (retorna todas as agendas)
+
+GET http://localhost:3000/agendas/:id
+
+DELETE http://localhost:3000/agendas/:id
+
+
+### Exemplos:
+
+
+```
 curl -X POST http://localhost:3000/agendas/create \
   -H "Content-Type: application/json" \
   -d '{
@@ -11,6 +26,8 @@ curl -X POST http://localhost:3000/agendas/create \
   "nomePaciente": "nomeTestePaciente2",
   "data": "2022-10-31T08:30:00.000Z"
 }'
+  
+curl -X GET http://localhost:3000/agendas/
 
 curl -X GET http://localhost:3000/agendas/1
 
@@ -19,7 +36,6 @@ curl -X PUT http://localhost:3000/agendas/1 \
   -d '{
     "data": "2023-11-11T15:30:00.000Z"
   }'
-  
-curl -X GET http://localhost:3000/agendas/
 
 curl -X DELETE http://localhost:3000/agendas/1
+```
