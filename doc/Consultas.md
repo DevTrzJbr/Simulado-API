@@ -1,3 +1,18 @@
+## ROTAS Consultas
+
+POST http://localhost:3000/consultas/create
+
+GET http://localhost:3000/consultas/
+
+GET http://localhost:3000/consultas/:id
+
+PUT http://localhost:3000/consultas/:id
+
+DELETE http://localhost:3000/consultas/:id
+
+### Exemplos
+
+```
 curl -X POST http://localhost:3000/consultas/create \
   -H "Content-Type: application/json" \
   -d '{
@@ -33,3 +48,5 @@ curl -X PUT http://localhost:3000/consultas/1 \
 }'
   
 curl -X DELETE http://localhost:3000/consultas/1
+
+```
