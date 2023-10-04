@@ -21,7 +21,7 @@ model Paciente {
 model Secretaria {
   id Int     @id @default(autoincrement())
   nome String
-  RG Int
+  RG Int      @unique
 }
 
 model Consulta {
