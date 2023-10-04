@@ -16,12 +16,14 @@ model Paciente {
   nome String 
   senha String
   user String @unique
+  consultas Consulta[]
 } 
 
 model Secretaria {
   id Int     @id @default(autoincrement())
   nome String
   RG Int      @unique
+  consultas Consulta[]
 }
 
 model Consulta {
@@ -29,6 +31,10 @@ model Consulta {
   data DateTime
   nomePaciente String
   nomeDentista String
+  paciente Paciente @relation(fields: [pacienteId], references:  [id])
+  pacienteId Int
+  secretaria Secretaria @relation(fields: [secretariaId], references: [id])
+  secretariaId Int
 }
 
 model Agenda {
