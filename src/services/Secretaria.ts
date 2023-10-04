@@ -21,6 +21,14 @@ class SecretariaServices {
         return secretarias;
     }
 
+    async readSecretariaById(id: number){
+        const secretaria = await this.prisma.secretaria.findFirstOrThrow({
+            where:{id}
+        });
+
+        return secretaria;
+    }
+
     async updateSecretaria(id: number, nome: string, RG: number) {
         const secretaria = await this.prisma.secretaria.update({
             where: {

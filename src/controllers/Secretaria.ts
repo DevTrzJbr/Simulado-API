@@ -32,6 +32,18 @@ class SecretariaController {
         }
     }
 
+    async readById(req: Request, res: Response) {
+        const { id } = req.params;
+        try{
+            const secretaria = await secretariaServices.readSecretariaById(Number(id));
+            return res.status(200).json(secretaria);
+        } catch(err){
+            res.status(501).json({
+                message: "ERRO"
+            })
+        }
+    }
+
     async update(req: Request, res: Response) {
         const { id } = req.params;
         const { nome, RG } = req.body;

@@ -9,7 +9,7 @@ import { agendaRouter } from './Agenda';
 const router = express.Router();
 
 router.use("/", HomeRouter)
-router.use('/paciente', PacienteRouter);
+router.use('/pacientes', PacienteRouter);
 router.use('/consultas', consultaRouter);
 router.use('/agendas', agendaRouter);
 router.use('/secretarias', secretariasRouter);

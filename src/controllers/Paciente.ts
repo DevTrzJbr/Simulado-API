@@ -78,10 +78,9 @@ class PacienteController {
 
     // Delete a Paciente by ID
     async deletePaciente(req: Request, res: Response) {
-        const id = req.body.id;
 
         try {
-            const pacienteDelete = await paciente.deletePaciente(id);
+            const pacienteDelete = await paciente.deletePaciente(Number(req.params.id));
 
             res.status(200);
             res.json({ message: 'Paciente excluído com sucesso', pacienteDelete});

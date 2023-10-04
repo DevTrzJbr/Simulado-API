@@ -6,6 +6,7 @@ const secretariaController = new SecretariaController();
 
 secretariasRouter.post('/create', secretariaController.create);
 secretariasRouter.get('/', secretariaController.read);
+secretariasRouter.get('/:id', secretariaController.readById);
 secretariasRouter.put('/:id', secretariaController.update);
 secretariasRouter.delete('/:id', secretariaController.delete);
 
