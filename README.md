@@ -12,6 +12,13 @@
 1. Execute `npm run dev` para iniciar o servidor
 2. Acesse `http://localhost:3000` no seu navegador
 
+## Rotas
+
+1. [Pacientes](/doc/Pacientes.md)
+2. [Secretarias](/doc/Secretarias.md)
+3. [Consultas](/doc/Consultas.md)
+3. [Agendas](/doc/Agendas.md)
+
 ## Contribuição
 
 1. Faça o fork do projeto
