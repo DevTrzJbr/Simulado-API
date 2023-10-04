@@ -5,9 +5,8 @@ const consultaService = new ConsultaService();
 
 export class ConsultaController {
     async createConsulta(req: Request, res: Response) {
-        const { nomePaciente, nomeDentista } = req.body 
         try {
-            const consulta = await consultaService.createConsulta(nomePaciente, nomeDentista);
+            const consulta = await consultaService.createConsulta(req.body);
             res.status(201).json(consulta);
         } catch (error) {
             res.status(500).json({ message: "ERRO" });

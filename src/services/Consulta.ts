@@ -1,18 +1,30 @@
 import { PrismaClient, Consulta } from '@prisma/client';
+import { AgendaService } from './Agenda';
+
+interface createConsulta {
+    data: Date,
+    nomePaciente: string,
+    nomeDentista: string,
+    pacienteId: number,
+    secretariaId: number
+}
+
+interface updateConsulta {
+    data?: Date,
+    nomePaciente?: string,
+    nomeDentista?: string,
+    pacienteId?: number,
+    secretariaId?: number
+}
 
 export class ConsultaService {
     private prisma: PrismaClient
     constructor() {
         this.prisma = new PrismaClient()
     }
-    async createConsulta(nomePaciente: string, nomeDentista: string) {
-        const consulta = await this.prisma.consulta.create({
-            data: {
-                data: new Date(),
-                nomePaciente,
-                nomeDentista
-            }
-        });
+    async createConsulta(data: createConsulta) {
+        const consulta = await this.prisma.consulta.create({ data });
+
         return consulta;
     }
 
@@ -30,7 +42,7 @@ export class ConsultaService {
         return consultas;
     }
 
-    async updateConsulta(id: number, data: Partial<Consulta>) {
+    async updateConsulta(id: number, data: updateConsulta) {
         const consulta = await this.prisma.consulta.update({
             where: {
                 id,
